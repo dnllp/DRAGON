@@ -22,11 +22,12 @@
 #define PCLK_GPIO_NUM    22
 
 // Dirección MAC del ESP32 receptor
-uint8_t broadcastAddress[] = {0x24, 0x0A, 0xC4, 0x12, 0x34, 0x56}; // Cambia esto por la dirección MAC del receptor
+uint8_t broadcastAddress[] = {0x24, 0x0A, 0xC4, 0x12, 0x34, 0x56}; // Cambia esto por la dirección MAC del receptor para cada cámara
 
 // Estructura para enviar datos
 typedef struct struct_message {
     bool azulDetectado;
+    int Id;
 } struct_message;
 
 struct_message myData;
@@ -112,6 +113,7 @@ void loop() {
     bool azulDetectado = detectarAzul(fb->buf, fb->width, fb->height);
 
     // Enviar el resultado por ESP-NOW
+    myData.Id =1; // Identificador de cámara 1,2,3 4
     myData.azulDetectado = azulDetectado;
     esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
 
