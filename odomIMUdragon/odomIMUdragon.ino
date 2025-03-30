@@ -83,4 +83,11 @@ void setup() {
     pinMode(ENCODER_RIGHT_B, INPUT);
 
     attachInterrupt(digitalPinToInterrupt(ENCODER_LEFT_A), encoderLeftA, CHANGE);
-    attachInterrupt(digitalPinToInterrupt(ENCODER_RIGHT_A), encode
+    attachInterrupt(digitalPinToInterrupt(ENCODER_RIGHT_A), encoderRightA, CHANGE);
+  }
+  
+  void loop() {
+      calculateOdometry();
+      nh.spinOnce();
+      delay(100);
+  }
