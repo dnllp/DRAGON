@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="differential_robot" type="robot_differential_node.py" name="differential_robot" output="screen">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="baudrate" value="57600"/>
+    <param name="wheel_radius" value="0.065"/>
+    <param name="wheel_base" value="0.30"/>
+    <param name="encoder_ticks" value="980"/>
+  </node>
+</launch>
